@@ -19,13 +19,13 @@ export async function POST(req: NextRequest): Promise<Response> {
   try {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
-
+console.log("1111");
     const userDal = new UserDAL();
     if (await userDal.exists(email)) {
       // User already exists.
       return NextResponse.json({ status: ResponseStatus.alreadyExisted });
     }
-
+    console.log("22222");
     /* Activation verification code */
     
     // if (ifVerifyCode) {
@@ -38,7 +38,8 @@ export async function POST(req: NextRequest): Promise<Response> {
 
     const user = new UserLogic();
     await user.register(email, password);
-
+    console.log("3333");
+    //process.exit(1);
     // If using an invitation code to register,
     // then determine the type of activation code and grant corresponding rights.
     if (invitation_code) {
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       //   tradeOrderId: `club-code-${invitation_code.toLowerCase()}`,
       // });
     }
-
+    console.log("4444");
     // After registration, directly generate a JWT Token and return it.
     const accessControl = new AccessControlLogic();
     const token = await accessControl.newJWT(email);
