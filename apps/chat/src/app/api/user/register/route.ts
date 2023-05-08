@@ -7,6 +7,7 @@ import {
   AccessControlLogic,
 } from "database";
 import { ReturnStatus, ResponseStatus } from "@/app/api/typing.d";
+import { Redis } from '@upstash/redis'
 
 const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
 
@@ -17,6 +18,15 @@ const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
  */
 export async function POST(req: NextRequest): Promise<Response> {
   try {
+
+    const redis = new Redis({
+      url: 'https://us1-true-monitor-39633.upstash.io',
+      token: 'AZrRACQgOWJiNjIyM2MtM2JkZi00NTYwLTg5OTgtOTBiMmVlMTIzZWJjYzdiODZlYTg5YmUxNDAxNjgxMGFiZTk2MjZjYWZjNzg=',
+    })
+       
+       
+    const data = await redis.set('foo', 'bar');
+
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
 console.log("1111");
