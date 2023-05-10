@@ -28,6 +28,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       return NextResponse.json({ status: ResponseStatus.alreadyExisted });
     }
     console.log("email not exist");
+    process.exit(1);
     /* Activation verification code */
     
     // if (ifVerifyCode) {
