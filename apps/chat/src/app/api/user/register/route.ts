@@ -19,23 +19,15 @@ const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
 export async function POST(req: NextRequest): Promise<Response> {
   try {
 
-    const redis = new Redis({
-      url: 'https://apn1-decent-bee-34619.upstash.io',
-      token: 'AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=',
-    })
-       
-       
-    const data = await redis.set('foo', 'bar');
-
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
-console.log("1111");
     const userDal = new UserDAL();
     if (await userDal.exists(email)) {
       // User already exists.
+      console.log("email  exist");
       return NextResponse.json({ status: ResponseStatus.alreadyExisted });
     }
-    console.log("22222");
+    console.log("email not exist");
     /* Activation verification code */
     
     // if (ifVerifyCode) {
@@ -48,7 +40,6 @@ console.log("1111");
 
     const user = new UserLogic();
     await user.register(email, password);
-    console.log("3333");
     //process.exit(1);
     // If using an invitation code to register,
     // then determine the type of activation code and grant corresponding rights.
@@ -66,7 +57,6 @@ console.log("1111");
       //   tradeOrderId: `club-code-${invitation_code.toLowerCase()}`,
       // });
     }
-    console.log("4444");
     // After registration, directly generate a JWT Token and return it.
     const accessControl = new AccessControlLogic();
     const token = await accessControl.newJWT(email);
