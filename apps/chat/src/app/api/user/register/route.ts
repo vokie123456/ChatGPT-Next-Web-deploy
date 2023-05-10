@@ -67,6 +67,6 @@ export async function POST(req: NextRequest): Promise<Response> {
     });
   } catch (error) {
     console.error("[REGISTER]", error);
-    return new Response("[INTERNAL ERROR1]", { status: 500 });
+    return new Response("[INTERNAL ERROR2]", { status: 500 });
   }
 }

@@ -30,6 +30,6 @@ export async function POST(req: NextRequest) {
     }
   } catch (error) {
     console.error("[SERVER ERROR]", error);
-    return new Response("[INTERNAL ERROR]", { status: 500 });
+    return new Response("[INTERNAL ERROR3]", { status: 500 });
   }
 }
