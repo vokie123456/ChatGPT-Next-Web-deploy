@@ -20,7 +20,7 @@ export async function GET(req: NextRequest): Promise<Response> {
   const codeData = await registerCode.newCode(email);
   console.log(codeData.status);
   switch (codeData.status) {
-    case RegisterReturnStatus.Success:
+  case RegisterReturnStatus.Success:
       await sendEmail(email, codeData?.code);
       // @ts-ignore
       delete codeData.code;
