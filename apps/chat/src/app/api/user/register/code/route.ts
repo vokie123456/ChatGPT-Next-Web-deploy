@@ -18,7 +18,7 @@ export async function GET(req: NextRequest): Promise<Response> {
   // Logic will automatically check the speed.
   const registerCode = new RegisterCodeLogic();
   const codeData = await registerCode.newCode(email);
-
+  console.log(codeData.status);
   switch (codeData.status) {
     case RegisterReturnStatus.Success:
       await sendEmail(email, codeData?.code);
