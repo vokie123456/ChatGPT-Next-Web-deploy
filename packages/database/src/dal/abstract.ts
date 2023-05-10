@@ -12,7 +12,7 @@ import { Redis } from "@upstash/redis";
  * 4. provide a helper fn for getKey
  */
 export abstract class AbstractDataAccessLayer<T> implements DataAccessLayer<T> {
-  protected readonly redis: Redis = defaultRedis;
+  protected readonly redis;
   constructor(
     redis: Redis | AbstractDataAccessLayer<unknown> = defaultRedis,
   ) {
