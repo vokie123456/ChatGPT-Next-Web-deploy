@@ -89,15 +89,15 @@ export default function Register() {
       return;
     }
 
-    const res = await (
+    const res = (await (
       await fetch(
-        "/api/user/register/code?email=" + email,
+        "/api/user/register/code?email=" + encodeURIComponent(email),
         {
           cache: "no-store",
           headers: { "Content-Type": "application/json" },
         }
       )
-    ).json();
+    )).json();
 
     switch (res.status) {
       case ResponseStatus.Success: {
