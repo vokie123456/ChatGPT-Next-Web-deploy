@@ -9,10 +9,6 @@ export class UserDAL extends AbstractDataAccessLayer<User> {
     await this.redis.json.set(this.getKey(email), "$", data);
   }
 
-  async exists(email: string): Promise<User | null> {
-    return (await this.redis.exists(this.getKey(email))) > 0;
-  }
-
   async read(email: string): Promise<User | null> {
     return (await this.redis.json.get(this.getKey(email), "$"))?.[0] ?? null;
   }
