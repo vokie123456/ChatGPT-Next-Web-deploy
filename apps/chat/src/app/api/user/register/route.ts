@@ -22,8 +22,9 @@ export async function POST(req: NextRequest): Promise<Response> {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
     const userDal = new UserDAL();
- 
-    const ress = await userDal.exists(email);
+   console.log(userDal.redis);
+   // const ress = await userDal.exists(email);
+   const ress = "111";
     if (ress) {
       // User already exists.
       return NextResponse.json({ status: ResponseStatus.alreadyExisted });
