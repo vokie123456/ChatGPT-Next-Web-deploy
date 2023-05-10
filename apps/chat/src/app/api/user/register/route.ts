@@ -21,14 +21,9 @@ export async function POST(req: NextRequest): Promise<Response> {
   try {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
-    const defaultRedis = new Redis({
-        url: "https://apn1-decent-bee-34619.upstash.io",
-        token:
-          "AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=",
-      });
-    
+ 
    // const userDal = new UserDAL(testRedis);
-   const userDal = new UserDAL(defaultRedis);
+   const userDal = new UserDAL();
     const ress = await userDal.exists(email);
     if (ress) {
       // User already exists.

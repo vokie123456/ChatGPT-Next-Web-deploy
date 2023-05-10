@@ -17,11 +17,18 @@ export abstract class AbstractDataAccessLayer<T> implements DataAccessLayer<T> {
   constructor(
     redis: Redis | AbstractDataAccessLayer<unknown> = defaultRedis,
   ) {
-    if (redis instanceof AbstractDataAccessLayer) {
-      this.redis = redis.redis;
-    } else {
-      this.redis = redis;
-    }
+    const defaultRedis = new Redis({
+      url: "https://apn1-decent-bee-34619.upstash.io",
+      token:
+        "AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=",
+    });
+  
+    // if (redis instanceof AbstractDataAccessLayer) {
+    //   this.redis = redis.redis;
+    // } else {
+    //   this.redis = redis;
+    // }
+    this.redis = defaultRedis;
   }
 
   abstract readonly schema: ZodSchema<T>;
