@@ -28,36 +28,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       return NextResponse.json({ status: ResponseStatus.alreadyExisted });
     }
     console.log("email not exist");
-    process.exit(1);
-    /* Activation verification code */
     
-    // if (ifVerifyCode) {
-    //   const registerCodeLogic = new RegisterCodeLogic();
-    //   const success = await registerCodeLogic.activateCode(email, code.trim());
-
-    //   if (!success)
-    //     return NextResponse.json({ status: ResponseStatus.invalidCode });
-    // }
-
-    const user = new UserLogic();
-    await user.register(email, password);
-    //process.exit(1);
-    // If using an invitation code to register,
-    // then determine the type of activation code and grant corresponding rights.
-    if (invitation_code) {
-      const invitationCode = new InvitationCodeLogic();
-
-      const code = await invitationCode.acceptCode(
-        email,
-        invitation_code.toLowerCase()
-      );
-      // await user.newSubscription({
-      //   startsAt: Date.now(),
-      //   endsAt: Date.now() + 3 * 60 * 60 * 24 * 1000,
-      //   plan: "pro",
-      //   tradeOrderId: `club-code-${invitation_code.toLowerCase()}`,
-      // });
-    }
     // After registration, directly generate a JWT Token and return it.
     const accessControl = new AccessControlLogic();
     const token = await accessControl.newJWT(email);
