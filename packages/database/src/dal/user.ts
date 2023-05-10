@@ -1,9 +1,11 @@
 import { AbstractDataAccessLayer } from "./abstract";
 import { Subscription, subscription, User, user } from "../types";
+import { Redis } from "@upstash/redis";
 
 export class UserDAL extends AbstractDataAccessLayer<User> {
   readonly schema = user;
   readonly namespace = "user:";
+  readonly redis:Redis = this.redis;
 
   protected async doCreate(email: string, data: User): Promise<void> {
     await this.redis.json.set(this.getKey(email), "$", data);
