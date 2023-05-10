@@ -22,7 +22,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
     const userDal = new UserDAL();
-    console.log(userDal.super.redis);
+    console.log(userDal.this.redis);
     const ress = 111;//await userDal.exists(email);
     if (ress) {
       // User already exists.
