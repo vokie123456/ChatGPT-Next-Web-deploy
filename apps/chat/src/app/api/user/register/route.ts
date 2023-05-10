@@ -27,7 +27,8 @@ export async function POST(req: NextRequest): Promise<Response> {
           "AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=",
       });
     
-    const userDal = new UserDAL(testRedis);
+   // const userDal = new UserDAL(testRedis);
+   const userDal = new UserDAL();
     const ress = await userDal.exists(email);
     if (ress) {
       // User already exists.
