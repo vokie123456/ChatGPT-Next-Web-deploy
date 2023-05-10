@@ -9,7 +9,6 @@ import {
 import { ReturnStatus, ResponseStatus } from "@/app/api/typing.d";
 
 import { Redis } from '@upstash/redis';
-import { defaultRedis } from "database";
 
 const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
 
@@ -22,7 +21,7 @@ export async function POST(req: NextRequest): Promise<Response> {
   try {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
-    const testRedis = new Redis({
+    const defaultRedis = new Redis({
         url: "https://apn1-decent-bee-34619.upstash.io",
         token:
           "AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=",
