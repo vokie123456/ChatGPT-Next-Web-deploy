@@ -17,8 +17,10 @@ export abstract class AbstractDataAccessLayer<T> implements DataAccessLayer<T> {
     redis: Redis | AbstractDataAccessLayer<unknown> = defaultRedis,
   ) {
     if (redis instanceof AbstractDataAccessLayer) {
-      this.redis = redis.redis;
+      //this.redis = redis.redis;
+      this.redis = defaultRedis;
     } else {
+      //this.redis = redis;
       this.redis = defaultRedis;
     }
   }
