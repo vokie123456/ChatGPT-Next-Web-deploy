@@ -9,6 +9,7 @@ import {
 import { ReturnStatus, ResponseStatus } from "@/app/api/typing.d";
 
 import { Redis } from '@upstash/redis';
+import { defaultRedis } from "database";
 
 const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
 
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest): Promise<Response> {
       });
     
    // const userDal = new UserDAL(testRedis);
-   const userDal = new UserDAL();
+   const userDal = new UserDAL(defaultRedis);
     const ress = await userDal.exists(email);
     if (ress) {
       // User already exists.
