@@ -21,21 +21,21 @@ export async function POST(req: NextRequest): Promise<Response> {
   try {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
-    // const userDal = new UserDAL();
-    // if (await userDal.exists(email)) {
-    //   // User already exists.
-    //   return NextResponse.json({ status: ResponseStatus.alreadyExisted });
-    // }
+    const userDal = new UserDAL();
+    if (await userDal.exists(email)) {
+      // User already exists.
+      return NextResponse.json({ status: ResponseStatus.alreadyExisted });
+    }
 
     /* Activation verification code */
     
-// if (ifVerifyCode) {
-//   const registerCodeLogic = new RegisterCodeLogic();
-//   const success = await registerCodeLogic.activateCode(email, code.trim());
+if (ifVerifyCode) {
+  const registerCodeLogic = new RegisterCodeLogic();
+  const success = await registerCodeLogic.activateCode(email, code.trim());
 
-//   if (!success)
-//     return NextResponse.json({ status: ResponseStatus.invalidCode });
-// }
+  if (!success)
+    return NextResponse.json({ status: ResponseStatus.invalidCode });
+}
     const redis = new Redis({
       url: 'https://apn1-decent-bee-34619.upstash.io',
       token: 'AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=',
