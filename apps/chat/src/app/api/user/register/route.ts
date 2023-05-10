@@ -5,12 +5,10 @@ import {
   RegisterCodeLogic,
   InvitationCodeLogic,
   AccessControlLogic,
-  testUserDAL,
-  testInvitationCodeDAL,
 } from "database";
 import { ReturnStatus, ResponseStatus } from "@/app/api/typing.d";
 
-//import { Redis } from '@upstash/redis';
+import { Redis } from '@upstash/redis';
 
 const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
 
@@ -23,7 +21,13 @@ export async function POST(req: NextRequest): Promise<Response> {
   try {
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
-    const userDal = new testUserDAL();
+    const testRedis = new Redis({
+        url: "https://apn1-decent-bee-34619.upstash.io",
+        token:
+          "AYc7ACQgNGY1N2YyZGEtMTM1MC00NDg1LTkxNGEtZjdkZDgzNGNiYzAwNzRlMzcwNTRlNDI0NDU5ZDgwNWUzNWE5OTQwOTM1OTU=",
+      });
+    
+    const userDal = new UserDAL(testRedis);
     const ress = await userDal.exists(email);
     if (ress) {
       // User already exists.
