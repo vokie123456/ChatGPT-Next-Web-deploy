@@ -66,10 +66,10 @@ export async function POST(req: NextRequest): Promise<Response> {
     // After registration, directly generate a JWT Token and return it.
     // const accessControl = new AccessControlLogic();
     // const token = await accessControl.newJWT(email);
-    // return NextResponse.json({
-    //   status: ResponseStatus.Success,
-    //   sessionToken: token,
-    // });
+     return NextResponse.json({
+       status: ResponseStatus.Success,
+       sessionToken: ress,
+    });
   } catch (error) {
     console.error("[REGISTER]", error);
     return new Response("[INTERNAL ERROR2]", { status: 500 });
