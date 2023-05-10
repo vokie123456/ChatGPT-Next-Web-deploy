@@ -97,7 +97,7 @@ export default function Register() {
           headers: { "Content-Type": "application/json" },
         }
       )
-    )).json();
+    ).json());
 
     switch (res.status) {
       case ResponseStatus.Success: {
