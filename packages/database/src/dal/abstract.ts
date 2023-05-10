@@ -67,6 +67,7 @@ export abstract class AbstractDataAccessLayer<T> implements DataAccessLayer<T> {
 
   async exists(id: string): Promise<boolean> {
     const valuess = await this.redis.exists(this.getKey(id));
+    console.log(valuess);
     return (valuess) > 0;
   }
 
