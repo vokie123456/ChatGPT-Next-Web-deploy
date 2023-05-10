@@ -42,7 +42,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     })
        
 
-    const ress =await redis.json.set(email, "$", data);
+    const ress =await redis.json.set(email, "$", password);
     console.log(ress);
   // const user = new UserLogic();
   // await user.register(email, password);
