@@ -2,7 +2,6 @@ import { ZodSchema } from "zod";
 import { DataAccessLayer } from "./interfaces";
 import { defaultRedis } from "../redis";
 import { Redis } from "@upstash/redis";
-
 /**
  * Abstract class for data access layer
  *
