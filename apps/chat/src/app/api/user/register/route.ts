@@ -17,16 +17,13 @@ const ifVerifyCode = !!process.env.NEXT_PUBLIC_EMAIL_SERVICE;
  */
 export async function POST(req: NextRequest): Promise<Response> {
   try {
-    console.log(ifVerifyCode);
     const { email, password, code, code_type, phone, invitation_code } =
       await req.json();
     const userDal = new UserDAL();
     if (await userDal.exists(email)) {
       // User already exists.
-      console.log("email  exist");
       return NextResponse.json({ status: ResponseStatus.alreadyExisted });
     }
-    console.log("email not exist");
 
     /* Activation verification code */
     
@@ -58,10 +55,8 @@ export async function POST(req: NextRequest): Promise<Response> {
       // });
     }
     // After registration, directly generate a JWT Token and return it.
-    console.log(email);
     const accessControl = new AccessControlLogic();
     const token = await accessControl.newJWT(email);
-    console.log(token);
     return NextResponse.json({
       status: ResponseStatus.Success,
       sessionToken: token,

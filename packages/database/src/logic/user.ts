@@ -34,7 +34,8 @@ export class UserLogic {
     const passwordHash = await this.dal.readPassword(email);
     const success = passwordHash === md5.hash(password.trim());
 
-    if (success) await this.dal.update(email, { lastLoginAt: Date.now() });
+    //if (success) 
+    await this.dal.update(email, { lastLoginAt: Date.now() });
 
     return success;
   }
