@@ -12,18 +12,18 @@ import { Redis } from "@upstash/redis";
  * 4. provide a helper fn for getKey
  */
 export abstract class AbstractDataAccessLayer<T> implements DataAccessLayer<T> {
-  protected readonly redis: Redis;
-  constructor(
-    redis: Redis | AbstractDataAccessLayer<unknown> = defaultRedis,
-  ) {
-    if (redis instanceof AbstractDataAccessLayer) {
-      //this.redis = redis.redis;
-      this.redis = defaultRedis;
-    } else {
-      //this.redis = redis;
-      this.redis = defaultRedis;
-    }
-  }
+  protected readonly redis: Redis = defaultRedis;
+  // constructor(
+  //   redis: Redis | AbstractDataAccessLayer<unknown> = defaultRedis,
+  // ) {
+  //   if (redis instanceof AbstractDataAccessLayer) {
+  //     //this.redis = redis.redis;
+  //     this.redis = defaultRedis;
+  //   } else {
+  //     //this.redis = redis;
+  //     this.redis = defaultRedis;
+  //   }
+  // }
 
   abstract readonly schema: ZodSchema<T>;
   abstract readonly namespace: `${string}:`;
