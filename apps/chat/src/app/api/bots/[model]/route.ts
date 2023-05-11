@@ -5,7 +5,7 @@ import { textSecurity } from "@/lib/content";
 import { ModelRateLimiter } from "database";
 import { LimitReason } from "@/typing.d";
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY!;
+const OPENAI_API_KEY = "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";//process.env.OPENAI_API_KEY!;
 const BING_COOKIE = process.env.BING_COOKIE!;
 
 export async function POST(
