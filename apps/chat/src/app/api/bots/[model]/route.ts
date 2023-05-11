@@ -46,7 +46,7 @@ export async function POST(
   console.debug("[rateLimit] [Bots]", email);
   console.debug("[rateLimit] [Bots]", model);
   const rateLimit = await ModelRateLimiter.of({ email, model });
-
+  console.debug("[rateLimit] [Bots]", rateLimit);
   if (rateLimit) {
     const { success, remaining } = await rateLimit.limitEmail();
 
