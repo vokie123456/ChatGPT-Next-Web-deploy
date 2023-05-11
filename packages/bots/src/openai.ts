@@ -38,7 +38,7 @@ export class OpenAIBot extends AbstractBot {
       max_tokens: maxTokens,
       stream: true,
     })}`);
-    console.debug(`signal is: ${signal}`);
+    console.debug(`signal is: ${JSON.stringify(signal)}`);
 
     if (!response.ok) {
       throw new Error(`OpenAI API error1: ${response.statusText}`);
