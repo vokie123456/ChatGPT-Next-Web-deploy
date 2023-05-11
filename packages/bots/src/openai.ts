@@ -31,31 +31,31 @@ export class OpenAIBot extends AbstractBot {
       }),
       signal,
     });
-    console.debug(`fetch is: ${JSON.stringify(await fetch(COMPLETIONS_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.apiKey}`,
-      },
-      body: JSON.stringify({
-        model: this.model,
-        messages: conversation,
-        max_tokens: maxTokens,
-        stream: true,
-      }),
-      signal,
-    }))}`);
-    console.debug(`Bearer ${this.apiKey}`);
-    console.debug(`body is: ${JSON.stringify({
-      model: this.model,
-      messages: conversation,
-      max_tokens: maxTokens,
-      stream: true,
-    })}`);
-    console.debug(`signal is: ${JSON.stringify(signal)}`);
+    // console.debug(`fetch is: ${JSON.stringify(await fetch(COMPLETIONS_URL, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: `Bearer ${this.apiKey}`,
+    //   },
+    //   body: JSON.stringify({
+    //     model: this.model,
+    //     messages: conversation,
+    //     max_tokens: maxTokens,
+    //     stream: true,
+    //   }),
+    //   signal,
+    // }))}`);
+    // console.debug(`Bearer ${this.apiKey}`);
+    // console.debug(`body is: ${JSON.stringify({
+    //   model: this.model,
+    //   messages: conversation,
+    //   max_tokens: maxTokens,
+    //   stream: true,
+    // })}`);
+    // console.debug(`signal is: ${JSON.stringify(signal)}`);
 
     if (!response.ok) {
-      throw new Error(`OpenAI API error1: ${response.statusText}`);
+      throw new Error(`OpenAI API error: ${response.statusText}`);
     }
 
     const lines = streamToLineIterator(response.body!);

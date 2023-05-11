@@ -5,7 +5,7 @@ import { textSecurity } from "@/lib/content";
 import { ModelRateLimiter } from "database";
 import { LimitReason } from "@/typing.d";
 
-const OPENAI_API_KEY = "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";//process.env.OPENAI_API_KEY!;
+const OPENAI_API_KEY = "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";//process.env.OPENAI_API_KEY!;
 const BING_COOKIE = process.env.BING_COOKIE!;
 
 export async function POST(
@@ -43,7 +43,8 @@ export async function POST(
     default:
       return NextResponse.json({}, { status: 404 });
   }
-
+  console.debug("[rateLimit] [Bots]", email);
+  console.debug("[rateLimit] [Bots]", model);
   const rateLimit = await ModelRateLimiter.of({ email, model });
 
   if (rateLimit) {
