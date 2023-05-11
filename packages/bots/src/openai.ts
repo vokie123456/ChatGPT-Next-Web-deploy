@@ -31,7 +31,7 @@ export class OpenAIBot extends AbstractBot {
       }),
       signal,
     });
-
+    console.debug(`Bearer ${this.apiKey}`);
     if (!response.ok) {
       throw new Error(`OpenAI API error: ${response.statusText}`);
     }
