@@ -96,8 +96,6 @@ export async function requestChatStream(
     clearTimeout(reqTimeoutId);
 
     let responseText = "";
-    
-    console.log("[Request model] ", options?.modelConfig?.model);
 
     const finish = () => {
       options?.onMessage(responseText, true);

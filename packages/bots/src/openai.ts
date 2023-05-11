@@ -8,7 +8,7 @@ const COMPLETIONS_URL = `${API_END_POINT}/v1/chat/completions`;
 
 export class OpenAIBot extends AbstractBot {
   constructor(
-    private readonly apiKey: string = "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",
+    private readonly apiKey: string = "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",
     private readonly model: GPTModel = 'gpt-3.5-turbo'
   ) {
     super();
