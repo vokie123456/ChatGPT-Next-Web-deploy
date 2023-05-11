@@ -32,7 +32,7 @@ export class OpenAIBot extends AbstractBot {
       signal,
     });
 
-    console.debug(`body is: ${JSON.stringify(response.body)}`);
+    console.debug(`body is: ${JSON.stringify(response)}`);
 
     if (!response.ok) {
       throw new Error(`OpenAI API error1: ${response.statusText}`);
